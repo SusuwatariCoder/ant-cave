@@ -13,7 +13,7 @@
       <el-table-column
         prop="address"
         label="网址">
-      </el-table-column>
+      </el-table-column>  
         <el-table-column
         prop="address"
         label="查看">

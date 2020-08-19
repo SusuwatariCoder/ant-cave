@@ -5,8 +5,16 @@
       nameKey="name"
       valueKey="value"
       color="Accent"
-      :showTooltip="true"
-      :wordClick="wordClickHandler">
+      
+      修改了图标外边距
+      top="30px" 
+      right="30px" 
+      bottom="30px" 
+      left="30px"
+
+      :showTooltip="false"
+      :wordClick="wordClickHandler"
+      >
       </wordcloud>
   </div>
 </template>
@@ -98,5 +106,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
- 
+
 </style>

@@ -10,7 +10,10 @@
   "dependencies": {
     "3box": "^1.21.0",
     "core-js": "^3.6.5",
+    "dayjs": "^1.8.33",
     "element-ui": "^2.13.2",
+    "moment": "^2.27.0",
+    "nrm": "^1.2.1",
     "vue": "^2.6.11",
     "vue-wordcloud": "^1.1.1",
     "web-encoding": "^1.0.1"
