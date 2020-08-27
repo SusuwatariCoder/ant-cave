@@ -14,6 +14,7 @@
     "element-ui": "^2.13.2",
     "moment": "^2.27.0",
     "nrm": "^1.2.1",
+    "secp256k1": "^3.6.2",
     "vue": "^2.6.11",
     "vue-wordcloud": "^1.1.1",
     "web-encoding": "^1.0.1"

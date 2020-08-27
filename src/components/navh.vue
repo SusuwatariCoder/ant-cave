@@ -3,21 +3,68 @@
     <ul>
             <img src="../assets/faucet.gif" alt="#">
             <p class="yi">蚁穴</p>
-        <li class="login">
-            <a href="#">登录</a>
+        <li @click="login" class="login">
+            <a class="el-icon-s-home" href="#">{{ loginText }}</a>
             </li>
-        <li class="Registration">
-            <a href="#">注册</a>
+        <li @click="create" class="Registration">
+            <!-- 使用说明 https://element.eleme.cn/#/zh-CN/component/icon -->
+            <a class="el-icon-edit" href="#">创建身份</a>
             </li>
+        <li @click="create" class="Registration">
+            <!-- 使用说明 https://element.eleme.cn/#/zh-CN/component/icon -->
+            <a class="el-icon-edit" href="#">创建身份</a>
+            </li>
+        {{ addressText }}
     </ul>
+     
 </div>
 </template>
 
 <script>
-    export default {
-
+import Box from '3box'
+ 
+export default {
+        data(){
+            return{
+                address: "未登录",
+                addressText: "未登录",
+                loginText: "钱包登录",
+            }
+        },
+        created: function(){
+             this.connect()
+        },
+        methods:{
+            async connect(){
+                 // 1. 先连接钱包 获得地址
+                let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+                console.log("获得地址", accounts[0])
+                this.address = accounts[0]
+                this.addressText = this.address.substring(0, 6) + "..." + this.address.substring(this.address.length - 6)
+            },
+            async login(){
+                this.connect()
+                //  2. 用户初次使用没有： proof_did ， 为地址创建Box身份， 获得proof_did
+                this.box = await Box.openBox(this.address, window.ethereum)
+                this.box.syncDone
+                console.log(this.box)
+                this.loginText = "已登录"
+            },
+            async create(){
+                // 1. 先连接钱包 获得地址
+                this.connect()
+                // 2. 用户初次使用没有： proof_did ， 为地址创建Box 身份， 获得proof_did
+                this.box = await Box.openBox(this.address, window.ethereum)
+                this.box.syncDone
+                console.log(this.box)
+            }
+        }
     }
 </script>
+
+
+
+
 
 <style scoped>
     .nav{
@@ -56,6 +103,7 @@
     li{
         font-size: 25px;
         text-align: right;
+        display: inline-block;
     }
     li a{
         color: white;

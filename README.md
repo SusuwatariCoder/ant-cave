@@ -22,5 +22,5 @@ npm run lint
 
 ### Update
 ```
-git subtree push --prefix=docs/.vuepress/dist origin gh-pages
+git subtree push --prefix=dist origin gh-pages
 ```
