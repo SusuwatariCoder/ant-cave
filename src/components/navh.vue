@@ -14,7 +14,7 @@
             <!-- 使用说明 https://element.eleme.cn/#/zh-CN/component/icon -->
             <a class="el-icon-edit" href="#">创建身份</a>
             </li>
-        {{ addressText }}
+        用户: {{ addressText }}
 
         网络: {{ network }}
     </ul>
@@ -65,7 +65,8 @@ export default {
             },
             getNet() {
              // 查询网络类型
-            let net = ethereum.chainId
+            let net = window.ethereum.chainId
+            console.log(net)
                         if(net == "0x1"){
                             this.network = "以太坊主网"
                         }else if(net == "0x2"){
