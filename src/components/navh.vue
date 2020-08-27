@@ -41,6 +41,7 @@ export default {
                 console.log("获得地址", accounts[0])
                 this.address = accounts[0]
                 this.addressText = this.address.substring(0, 6) + "..." + this.address.substring(this.address.length - 6)
+                this.loginText = "已登录"
             },
             async login(){
                 this.connect()
@@ -48,7 +49,7 @@ export default {
                 this.box = await Box.openBox(this.address, window.ethereum)
                 this.box.syncDone
                 console.log(this.box)
-                this.loginText = "已登录"
+                
             },
             async create(){
                 // 1. 先连接钱包 获得地址
