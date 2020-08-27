@@ -15,6 +15,8 @@
             <a class="el-icon-edit" href="#">创建身份</a>
             </li>
         {{ addressText }}
+
+        网络: {{ network }}
     </ul>
      
 </div>
@@ -29,10 +31,12 @@ export default {
                 address: "未登录",
                 addressText: "未登录",
                 loginText: "钱包登录",
+                network: "未连接",
             }
         },
         created: function(){
              this.connect()
+             this.getNet() // 网络类型
         },
         methods:{
             async connect(){
@@ -58,7 +62,26 @@ export default {
                 this.box = await Box.openBox(this.address, window.ethereum)
                 this.box.syncDone
                 console.log(this.box)
-            }
+            },
+            getNet() {
+             // 查询网络类型
+            let net = ethereum.chainId
+                        if(net == "0x1"){
+                            this.network = "以太坊主网"
+                        }else if(net == "0x2"){
+                            this.network = "Expanse mainnet"
+                        }else if(net == "0x3"){
+                            this.network = "Ropsten 测试网"
+                        }else if(net == "0x3"){
+                            this.network = "Ropsten 测试网"
+                        }else if(net == "0x4"){
+                            this.network = "Rinkeby 测试网"
+                        }else if(net == "0x5"){
+                            this.network = "Goerli 测试网"
+                        }else if(net == "0x2a"){
+                            this.network = "Kovan 测试网"
+                        }
+            },
         }
     }
 </script>
