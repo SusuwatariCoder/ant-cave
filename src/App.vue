@@ -1,11 +1,13 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-        <navh />
+        <navh  v-on:userAddress = "getUserAddress" />
+        <NewData v-show="addDataBlock" v-bind:address="address" />
+        <el-button @click="addNewData">{{ addData }}</el-button>
+        <el-button>更新数据</el-button>
         <WordCloud />
-        <!-- <ShowContent /> -->
-        <history />
-        <!-- <history2 /> -->
+        <!-- <history /> -->
+        <!-- <history /> -->
         <footPicture />
   </div>
 </template>
@@ -15,21 +17,44 @@
 // import OrbitDBDemo from './components/OrbitDBDemo.vue'
 import navh from  './components/navh.vue'
 import WordCloud from './components/WordCloud.vue'
-// import ShowContent from './components/ShowContent.vue'
-import history from './components/history.vue'
+ 
+// import history from './components/history.vue'
 // import history2 from './components/history2.vue'
 import footPicture from './components/footPicture.vue'
-
+import NewData from './components/user/NewData'
 
 export default {
   name: 'App',
   components: {
     navh,
     WordCloud,
-    // ShowContent,
-    history,
+    // history,
     // history2,
-    footPicture
+    footPicture,
+    NewData,
+  },
+  data(){
+    return {
+      address: "",
+      addDataBlock: false,
+      addData: "贡献数据",
+    }
+  },
+  methods: {
+    getUserAddress(address){
+        
+        this.address = address
+        console.log("父组件地址", this.address)
+    },
+    addNewData(){
+      if(this.addDataBlock == false){
+        this.addDataBlock = true
+        this.addData = "关闭"
+      }else{
+        this.addDataBlock = false
+        this.addData = "贡献数据"
+      }
+    }
   }
 }
 </script>
@@ -53,6 +78,7 @@ export default {
       color: #2c3e50;
     
     }
+     
 
 
 </style>

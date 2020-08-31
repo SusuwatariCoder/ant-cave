@@ -1,95 +1,83 @@
 <template>
-  <div class="wordcloud">
+<div>
+    <div class="wordcloud">
    <wordcloud
       :data="defaultWords"
-      nameKey="name"
-      valueKey="value"
       color="Accent"
-      
-      修改了图标外边距
       top="30px" 
       right="30px" 
       bottom="30px" 
       left="30px"
-
       :showTooltip="false"
       :wordClick="wordClickHandler"
       >
       </wordcloud>
   </div>
+  <div>
+    <ShowContent />
+  </div>
+</div>
+
 </template>
 
 <script>
+import Box from '3box';
 import wordcloud from 'vue-wordcloud'
+import ShowContent from './ShowContent'
 export default {
-  name: 'WordCloud',
+   name: 'WordCloud',
    components: {
-    wordcloud
+    wordcloud,
+    ShowContent
   },
    methods: {
     wordClickHandler(name, value, vm) {
+      this.ReadFrom3BoxByTag("搜索引擎")
       console.log('wordClickHandler', name, value, vm);
-    }
+
+    },
+    async ReadFrom3BoxByTag(tag){
+            //  获得  信息 
+            console.log(tag)
+            const spaceData = await Box.getSpace(this.address, tag)
+            console.log(spaceData)
+            // const box = await Box.openBox(this.address, window.ethereum)
+            // box.syncDone
+            // console.log(box)
+    },
+    
   },
   data() {
     return {
       myColors: ['#1f77b4', '#629fc9', '#94bedb', '#c9e0ef'],
       defaultWords: [{
-          "name": "电影",
+          "name": "区块链",
           "value": 26
         },
         {
-          "name": "音乐",
+          "name": "电影",
           "value": 19
         },
         {
-          "name": "电商",
+          "name": "图片",
           "value": 18
         },
         {
-          "name": "宠物",
-          "value": 16
-        },
-        {
-          "name": "编程",
+          "name": "搜索引擎",
           "value": 15
         },
         {
-          "name": "区块链",
+          "name": "游戏",
           "value": 9
         },
         {
-          "name": "数据库",
-          "value": 9
-        },
-        {
-          "name": "汽车",
-          "value": 9
-        },
-        {
-          "name": "金融",
+          "name": "编程语言",
           "value": 6
         },
         {
           "name": "科技",
           "value": 9
-        },
-        {
-          "name": "农业",
-          "value": 9
-        },
-        {
-          "name": "财经",
-          "value": 6
-        },
-        {
-          "name": "娱乐",
-          "value": 9
-        },
-        {
-          "name": "前端",
-          "value": 9
-        },
+        },  
         {
           "name": "以太坊",
           "value": 6

@@ -1,7 +1,11 @@
 <template>
 <div >
-    <!-- <img src="../assets/one.gif" alt="#"> -->
+ 
+    <div class="foot">
+        <a href="https://github.com/SusuwatariCoder/ant-cave">© SusuwatariCoder 2020</a>
+    </div>
 </div>
+
 </template>
 
 <script>
@@ -22,4 +26,18 @@
         height: 150px;
         
     }
+    .foot{
+    color: inherit;
+    margin-top: 60px;
+    font-size: 15px;
+    text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:visited{
+        text-decoration: none;
+    } 
 </style>

@@ -4,19 +4,15 @@
             <img src="../assets/faucet.gif" alt="#">
             <p class="yi">蚁穴</p>
         <li @click="login" class="login">
-            <a class="el-icon-s-home" href="#">{{ loginText }}</a>
-            </li>
-        <li @click="create" class="Registration">
-            <!-- 使用说明 https://element.eleme.cn/#/zh-CN/component/icon -->
-            <a class="el-icon-edit" href="#">创建身份</a>
-            </li>
-        <li @click="create" class="Registration">
-            <!-- 使用说明 https://element.eleme.cn/#/zh-CN/component/icon -->
-            <a class="el-icon-edit" href="#">创建身份</a>
-            </li>
-        用户: {{ addressText }}
+            <a v-if="logined==false" class="el-icon-s-home" href="#">{{ loginText }}</a>
+            <a v-else class="el-icon-s-home" href="#">{{ addressText }} </a>
 
-        网络: {{ network }}
+            </li>
+        <li @click="create" class="Registration">
+            <!-- 使用说明 https://element.eleme.cn/#/zh-CN/component/icon -->
+            <a v-if="logined==false" class="el-icon-edit" href="#"> 创建身份 </a>
+            <a v-else class="el-icon-edit" href="#">网络: {{ network }}</a>
+            </li>
     </ul>
      
 </div>
@@ -32,11 +28,11 @@ export default {
                 addressText: "未登录",
                 loginText: "钱包登录",
                 network: "未连接",
+                logined: false,
             }
         },
         created: function(){
              this.connect()
-             this.getNet() // 网络类型
         },
         methods:{
             async connect(){
@@ -44,8 +40,11 @@ export default {
                 let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
                 console.log("获得地址", accounts[0])
                 this.address = accounts[0]
-                this.addressText = this.address.substring(0, 6) + "..." + this.address.substring(this.address.length - 6)
+                this.addressText = this.address.substring(0, 4) + "..." + this.address.substring(this.address.length - 6)
                 this.loginText = "已登录"
+                this.getNet() // 网络类型
+                this.logined = true
+                this.sendDataToParent()
             },
             async login(){
                 this.connect()
@@ -83,6 +82,12 @@ export default {
                             this.network = "Kovan 测试网"
                         }
             },
+            sendDataToParent(){
+                //$emit（even,value）even 是一个函数，value 是传给父组件的值
+                this.$emit('userAddress', this.address)
+            }
+
+ 
         }
     }
 </script>
@@ -126,7 +131,7 @@ export default {
     }
 
     li{
-        font-size: 25px;
+        font-size: 20px;
         text-align: right;
         display: inline-block;
     }
@@ -139,11 +144,18 @@ export default {
     }
     .login a{
         position: absolute;
-        right: 300px;
+        width: 150px;
+        margin: 0px;
+        padding: 10px 0px 10px 0px;
+
+        right: 450px;
     }
     .Registration a{
         position: absolute;
-        right: 232px;
+        margin:0px;
+        width: 200px;
+        padding: 10px 0px 10px 0px;
+        right: 250px;
     }
 
     li a:hover {
