@@ -53,11 +53,13 @@
 <script>
     export default {
       name: "ShowContent",
+      props: ['allData'],
       methods: {
         handleClick(row) {
           console.log(row.url);
           window.open(row.url,'_blank') // 新窗口打开外链接
-      }
+        },
+      
       },
       data() {
         return {

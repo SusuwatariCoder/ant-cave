@@ -1,6 +1,5 @@
 <template>
 <div >
- 
     <div class="foot">
         <a href="https://github.com/SusuwatariCoder/ant-cave">© SusuwatariCoder 2020</a>
     </div>

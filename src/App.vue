@@ -2,12 +2,7 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
         <navh  v-on:userAddress = "getUserAddress" />
-        <NewData v-show="addDataBlock" v-bind:address="address" />
-        <el-button @click="addNewData">{{ addData }}</el-button>
-        <el-button>更新数据</el-button>
-        <WordCloud />
-        <!-- <history /> -->
-        <!-- <history /> -->
+        <WordCloud v-bind:address="address" />
         <footPicture />
   </div>
 </template>
@@ -21,7 +16,7 @@ import WordCloud from './components/WordCloud.vue'
 // import history from './components/history.vue'
 // import history2 from './components/history2.vue'
 import footPicture from './components/footPicture.vue'
-import NewData from './components/user/NewData'
+
 
 export default {
   name: 'App',
@@ -31,30 +26,18 @@ export default {
     // history,
     // history2,
     footPicture,
-    NewData,
+   
   },
   data(){
     return {
       address: "",
-      addDataBlock: false,
-      addData: "贡献数据",
     }
   },
   methods: {
     getUserAddress(address){
-        
         this.address = address
         console.log("父组件地址", this.address)
     },
-    addNewData(){
-      if(this.addDataBlock == false){
-        this.addDataBlock = true
-        this.addData = "关闭"
-      }else{
-        this.addDataBlock = false
-        this.addData = "贡献数据"
-      }
-    }
   }
 }
 </script>
