@@ -56,9 +56,10 @@ export default {
       }
     },
     wordClickHandler(name, value, vm) {
-      console.log('wordClickHandler', name, value, vm);
+      
       this.ReadFrom3BoxByTag(name).then((allData)=>{
           this.allData = allData
+          console.log('wordClickHandler', name, value, vm);
           console.log('allData', this.allData);
           this.changeAllData(name)
           
