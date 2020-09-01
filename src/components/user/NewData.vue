@@ -79,6 +79,7 @@ import Box from '3box';
         console.log('space', space);
         this.ReadFrom3Box(spaceName);
         console.log("提交成功！")
+        alert("提交成功！")
        
     },
     async SaveTag3Box(newTage) {
