@@ -92,7 +92,7 @@ export default {
     changeAllData(tagName){
       this.tableData = []
       for(let oneData in this.allData){
-          console.log("oneData-UEL", oneData, this.allData[oneData])
+          // console.log("oneData-UEL", oneData, this.allData[oneData])
           let temp = {
             name: oneData,
             tag: tagName,
@@ -101,6 +101,8 @@ export default {
           }
           this.tableData.push(temp)
       }
+
+      console.log("table-Data", this.tableData)
     }
 
     

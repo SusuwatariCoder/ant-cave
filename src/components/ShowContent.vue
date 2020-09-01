@@ -53,7 +53,7 @@
 <script>
     export default {
       name: "ShowContent",
-      props: ['allData'],
+      props: ['tableData'],
       methods: {
         handleClick(row) {
           console.log(row.url);
@@ -63,7 +63,7 @@
       },
       data() {
         return {
-          tableData: [{
+          tableData2: [{
             name: '鸠摩搜索',
             tag: '搜索引擎',
             cent: '-',

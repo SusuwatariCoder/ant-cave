@@ -34,9 +34,11 @@
 
     a {
         text-decoration: none;
+        color: black;
     }
 
     a:visited{
         text-decoration: none;
+        
     } 
 </style>

@@ -12,7 +12,7 @@
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-                <el-button @click="resetForm('ruleForm')">重置</el-button>
+                <el-button @click="resetForm()">重置</el-button>
             </el-form-item>
                 <!-- <el-button @click="SaveTag3Box('漫画')">test</el-button> -->
                 
@@ -36,7 +36,6 @@ import Box from '3box';
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            
             console.log("网站", this.ruleForm.webName)
             console.log("网址", this.ruleForm.webUrl)
             console.log("标签", this.ruleForm.webTag)
@@ -44,15 +43,18 @@ import Box from '3box';
             let DataKey = this.ruleForm.webName
             let DataValue = this.ruleForm.webUrl
             this.SaveTo3Box(spaceName, DataKey, DataValue)
-            alert('请等待提交!');
+            alert('写入比较慢，请等待提交!');
           } else {
             console.log('提交出错！');
             return false;
           }
         });
       },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
+      resetForm() {
+        console.log("重置")
+        this.ruleForm.webName = ""
+        this.ruleForm.webUrl = ""
+        this.ruleForm.webTag = ""
       },
     async SaveTo3Box(spaceName, DataKey, DataValue){
 
