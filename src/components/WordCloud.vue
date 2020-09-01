@@ -2,8 +2,8 @@
 <div>
   <div class="bot">
   
-    <NewData v-show="addDataBlock" v-bind:address="address" />
-    <el-button @click="addNewData">{{ addData }}</el-button>
+    <NewData  v-bind:address="address" />
+    <!-- <el-button @click="addNewData">{{ addData }}</el-button> -->
   </div>
   <div class="wordcloud">
    <wordcloud

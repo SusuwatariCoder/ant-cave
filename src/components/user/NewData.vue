@@ -1,6 +1,11 @@
 <template>
-    <div class="cov">
-        <el-form :model="ruleForm" status-icon ref="ruleForm" label-width="100px" >
+    <div class="cov" >
+
+      <el-popover
+          placement="right"
+          width="400"
+          trigger="click">
+          <el-form v-loading="loading" :model="ruleForm" status-icon ref="ruleForm" label-width="100px" >
             <el-form-item label="网站名称" prop="name">
                 <el-input v-model="ruleForm.webName" autocomplete="off"></el-input>
             </el-form-item>
@@ -14,9 +19,10 @@
                 <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
                 <el-button @click="resetForm()">重置</el-button>
             </el-form-item>
-                <!-- <el-button @click="SaveTag3Box('漫画')">test</el-button> -->
-                
-        </el-form>
+                <!-- <el-button @click="SaveTag3Box('漫画')">test</el-button> -->  
+              </el-form>
+          <el-button slot="reference">贡献数据</el-button>
+</el-popover>
     </div>
 </template>
 <script>
@@ -28,12 +34,14 @@ import Box from '3box';
           webName: '',
           webUrl: '',
           webTag: ''
-        }
+        },
+        loading: false,
       };
     },
     props: ['address'],
     methods: {
       submitForm(formName) {
+        this.loading = true
         this.$refs[formName].validate((valid) => {
           if (valid) {
             console.log("网站", this.ruleForm.webName)
@@ -43,9 +51,14 @@ import Box from '3box';
             let DataKey = this.ruleForm.webName
             let DataValue = this.ruleForm.webUrl
             this.SaveTo3Box(spaceName, DataKey, DataValue)
-            alert('写入比较慢，请等待提交!');
+            this.$message({
+                showClose: true,
+                message: '写入比较慢，请等待提交!',
+                type: 'warning'
+              });
           } else {
             console.log('提交出错！');
+             this.loading = false;
             return false;
           }
         });
@@ -79,7 +92,12 @@ import Box from '3box';
         console.log('space', space);
         this.ReadFrom3Box(spaceName);
         console.log("提交成功！")
-        alert("提交成功！")
+        this.loading = false
+        this.$message({
+          showClose: true,
+          message: "提交成功！",
+          type: 'success'
+        });
        
     },
     async SaveTag3Box(newTage) {
@@ -132,5 +150,10 @@ import Box from '3box';
     }
     .el-form-item__label{
       text-align: left;
+    }
+
+    .el-button{
+      background: #4DD0E1;
+      text-decoration-color: black;
     }
 </style>
