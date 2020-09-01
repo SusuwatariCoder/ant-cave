@@ -1,3 +1,4 @@
 module.exports = {
-    publicPath: "/ant-cave/"
+    // publicPath: "/ant-cave/"
+    publicPath: "/"
 }
