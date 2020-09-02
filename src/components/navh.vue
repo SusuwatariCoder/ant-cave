@@ -1,9 +1,10 @@
 <template>
 <div class="nav">
-    <ul>    <a href="https://ant-cave.vercel.app/">
+    <ul>    
             <img src="../assets/faucet.gif" alt="#">
-            <p class="yi">蚁穴 (请点击跳转线上版本)</p>
-            </a>
+            <a v-show="protocol" href="https://ant-cave.vercel.app/"> (由于安全协议，请点击跳转线上版本) </a>
+            <p class="yi">蚁穴</p>
+           
         <li @click="login" class="login">
             <a v-if="logined==false" class="el-icon-s-home" href="#">{{ loginText }}</a>
             <a v-else class="el-icon-s-home" href="#">{{ addressText }} </a>
@@ -30,10 +31,16 @@ export default {
                 loginText: "钱包登录",
                 network: "未连接",
                 logined: false,
+                protocol: true,
             }
         },
         created: function(){
              this.connect()
+             if(window.location.protocol == "http:"){
+                 this.protocol = true
+             }else{
+                 this.protocol = false
+             }
         },
         methods:{
             async connect(){
