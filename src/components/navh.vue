@@ -1,8 +1,9 @@
 <template>
 <div class="nav">
-    <ul>
+    <ul>    <a href="https://ant-cave.vercel.app/">
             <img src="../assets/faucet.gif" alt="#">
-            <p class="yi">蚁穴</p>
+            <p class="yi">蚁穴 (请点击跳转线上版本)</p>
+            </a>
         <li @click="login" class="login">
             <a v-if="logined==false" class="el-icon-s-home" href="#">{{ loginText }}</a>
             <a v-else class="el-icon-s-home" href="#">{{ addressText }} </a>
