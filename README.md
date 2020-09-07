@@ -1,7 +1,7 @@
 # ant-cave
 
 
-## 采用技术 
+## tools
 
 -  OrbitDB
 
@@ -15,9 +15,9 @@
 
 - Vue
 
-## 部署 
+## online DEMO 
 
-- https://vercel.com/
+- https://ant-cave.vercel.app/
 
 ## Project setup
 ```
